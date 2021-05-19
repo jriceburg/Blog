@@ -10,12 +10,13 @@ from django.views.generic import (ListView, DetailView, CreateView, UpdateView, 
 
 
 # Create your views here.
+@login_required
 def home(request):
     context = {'posts': Post.objects.all()}
     return render(request, 'blogApp/home.html', context)
 
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blogApp/home.html'
     context_object_name = 'posts'
@@ -23,7 +24,7 @@ class PostListView(ListView):
     paginate_by = 4
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
 
@@ -61,7 +62,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-
+@login_required
 def about(request):
     return render(request, 'blogApp/about.html')
 

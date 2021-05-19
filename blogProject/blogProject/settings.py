@@ -125,8 +125,14 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # need
-STATICFILES_DIRS = ['static']
+# STATICFILES_DIRS = ['static']
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'sign_in'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+
+STATIC_ROOT = BASE_DIR / 'static'
+
+
