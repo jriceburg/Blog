@@ -1,0 +1,57 @@
+{% extends 'blogApp/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    <title>Sign In</title>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12 my-5">
+            <div class="card mx-auto" style="max-width: 26rem;">
+                <h5 class="card-header text-center">Sign In</h5>
+                <div class="card-body">
+                    <form action="{% url 'sign_in' %}" method="POST" class="my-login-validation">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+                        <div class="row centerText">
+                            <div class="col-6 mb-2">
+                                <a href="#" class="text-left"> Forgot Password? </a>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <div class="text-right">
+                                    <input type="checkbox" id="remember" name="remember">
+                                    <label for="remember">Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center mb-3">
+                                Don't have an account?
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a href="{% url 'sign_up' %}" class="btn btn-success btn-block btn-md"><i
+                                    class="fas fa-plus"></i> Create a
+                                new
+                                account</a>
+                        </div>
+                        <div class="footer mt-1">
+                            Copyright &copy; 2021&#58; CyberSecurity Edu
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

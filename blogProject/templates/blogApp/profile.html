@@ -1,0 +1,48 @@
+{% extends 'blogApp/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+    blog app
+{% endblock %}
+
+
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="px-2 py-2 alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="jumbotron">
+        <p class="lead">profile</p>
+        <hr class="my-4">
+
+        <div class="content-section">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                </div>
+            </div>
+            <form action="{% url 'blog-profile' %}" enctype="multipart/form-data" method="POST"
+                  class="my-login-validation" novalidate>
+                {% csrf_token %}
+
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> Update
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+{% endblock %}

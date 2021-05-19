@@ -1,0 +1,39 @@
+{% extends 'blogApp/base.html' %}
+{% load static %}
+{% block title %}
+    blog app
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="col-md mt-4 mr-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>
+                            <span>{{ object.author }}</span>
+                            &nbsp;&nbsp;
+                            <span>{{ object.date_posted | date:'F d, Y ' }}</span>
+                        </h5>
+                        {% if object.author == user %}
+                    <div>
+                        <a class="btn btn-success mt-1 mb-1" href="{% url 'post-update' object.id %}"> Update</a>
+                        <a class="btn btn-danger mt-1 mb-1" href="{% url 'post-delete' object.id %}"> Delete</a>
+                    </div>
+                {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h2>{{ object.title }}</h2>
+                        <p class="article-content">{{ object.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+
+{% endblock %}

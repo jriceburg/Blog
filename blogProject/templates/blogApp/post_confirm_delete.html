@@ -1,0 +1,29 @@
+{% extends 'blogApp/base.html' %}
+{% load static %}
+{% block title %}
+    <title>Blog App</title>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12 my-5">
+            <div class="card mx-auto" style="max-width: 26rem;">
+                <h5 class="card-header text-center">Delete Post</h5>
+                <div class="card-body">
+                    <form method="POST" class="my-login-validation" novalidate>
+                        {% csrf_token %}
+                        <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
+                        <div class="form-group">
+                            <button class="btn btn-danger btn-block btn-md" type="submit">
+                                <i class="far fa-arrow-alt-circle-left"></i> Yes, Delete </button>
+                            <a class="btn btn-secondary btn-block btn-md" href="{% url 'post-detail' object.id %}" >
+                                <i class="far fa-arrow-alt-circle-left"></i> Cancel </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
